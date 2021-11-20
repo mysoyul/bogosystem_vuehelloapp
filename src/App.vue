@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HelloWorld title-msg="Welcome to Your Vue.js App" />
+    <HelloWorld v-on:addEvent="addTodo" title-msg="Welcome to Your Vue.js App" />
     <hr />
     <MyDirective v-bind:todos-array="todos" />
   </div>
