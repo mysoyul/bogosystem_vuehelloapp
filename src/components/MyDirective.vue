@@ -4,6 +4,15 @@
     <h3>Hello {{ name }}</h3>
     <h3>v-text : <span v-if="value === 0" v-text="name"></span></h3>
     이름 : <input type="text" v-model="name" > <br/>
+
+    TODO : <input type="text" v-model="todo">
+    <button @click="addTodo">Todo추가</button>
+    <br/>
+    <ul>
+        <li v-for="(todo,idx) in todos" :key="idx">
+            {{todo.text}}
+        </li>
+    </ul>
     <!--
         <input v-bind:value="name" v-on:change="함수"
     -->
@@ -13,12 +22,8 @@
     <button @click="decrement">감소</button> <br/>
     <input type="checkbox" v-model="isFlag"/>Logo 이미지
     <!--  v-bind:src 이지만 생략해서 :src -->
-    <img :src="isFlag ? vuelogo : anglogo" />
-    <ul>
-        <li v-for="(todo,idx) in todos" :key="idx">
-            {{todo.text}}
-        </li>
-    </ul>
+    <img width="100" height="100" :src="isFlag ? vuelogo : anglogo" />
+    
   </div>
 </template>
 <script>
@@ -33,6 +38,7 @@ export default {
       value: 0,
       vuelogo: "https://vuejs.org/images/logo.png",
       anglogo: "https://angular.io/assets/images/logos/angular/angular.svg",
+      todo: '',
       todos: [
         { text: "Vue.js 튜토리얼 작성하기" },
         { text: "Webpack2 알아보기" },
@@ -47,6 +53,13 @@ export default {
       },
       decrement() {
         this.value--;
+      },
+      addTodo() {
+          //this.todo 는 input에서 입력한 값이 저장된 변수 
+          let todoObj = {text: this.todo};
+          this.todos.push(todoObj);
+          //input 필드 초기화 input필드가 todo 변수와 연결이 되어 있으므로
+          this.todo = '';
       }
   },//methods
 };
