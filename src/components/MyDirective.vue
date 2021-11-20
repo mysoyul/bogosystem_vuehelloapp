@@ -9,7 +9,7 @@
     <button @click="addTodo">Todo추가</button>
     <br/>
     <ul>
-        <li v-for="(todo,idx) in todos" :key="idx">
+        <li v-for="(todo,idx) in todosArray" :key="idx">
             {{todo.text}}
         </li>
     </ul>
@@ -28,6 +28,8 @@
 </template>
 <script>
 export default {
+  //부모컴포넌트로 부터 받은 변수를 선언할 때 props
+  props:['todosArray'],
   //상태값을 저장할 변수를 선언할 때 data() 함수 내부에 선언한다.
   data() {
     return {
@@ -39,11 +41,7 @@ export default {
       vuelogo: "https://vuejs.org/images/logo.png",
       anglogo: "https://angular.io/assets/images/logos/angular/angular.svg",
       todo: '',
-      todos: [
-        { text: "Vue.js 튜토리얼 작성하기" },
-        { text: "Webpack2 알아보기" },
-        { text: "사이드 프로젝트 진행하기" },
-      ],
+    
     };
   },//data
   //개발자가 선언하는 메서드(함수)는 methods 라는 속성인 객체안에 선언을 한다.
@@ -56,8 +54,6 @@ export default {
       },
       addTodo() {
           //this.todo 는 input에서 입력한 값이 저장된 변수 
-          let todoObj = {text: this.todo};
-          this.todos.push(todoObj);
           //input 필드 초기화 input필드가 todo 변수와 연결이 되어 있으므로
           this.todo = '';
       }

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <HelloWorld title-msg="Welcome to Your Vue.js App"/>
-    <hr/>
-    <MyDirective />
+    <HelloWorld title-msg="Welcome to Your Vue.js App" />
+    <hr />
+    <MyDirective v-bind:todos-array="todos" />
   </div>
 </template>
 
@@ -15,7 +15,22 @@ export default {
   components: {
     HelloWorld,
     MyDirective
-  }
+  },
+  data() {
+    return {
+      todos: [
+        { text: "Vue.js 튜토리얼 작성하기" },
+        { text: "Webpack2 알아보기" },
+        { text: "사이드 프로젝트 진행하기" },
+      ],
+    }
+  },//data
+  methods: {
+    addTodo(todoText) {
+      let todoObj = {text: todoText};
+      this.todos.push(todoObj);
+    },
+  }//methods
 }
 </script>
 
